@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px; /* keeps section headings clear of the sticky header */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: #FFFFFF;
+  color: #171717;
+  font-family: 'Inter Variable', Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-feature-settings: 'cv11', 'ss01';
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: #171717; color: #FFFFFF; }
+
+:focus-visible { outline: 2px solid #171717; outline-offset: 3px; border-radius: 2px; }
+
+/* Subtle fade-in for sections. Content is visible by default; the class is only added by JS. */
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal, .reveal.is-visible { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { transition-duration: 0ms !important; animation-duration: 0ms !important; }
+}
+
+/* One gentle entrance for the hero; the page is complete without it. */
+@keyframes hero-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.hero-in { animation: hero-in .6s ease-out both; }
+@media (prefers-reduced-motion: reduce) { .hero-in { animation: none; } }
